@@ -42,7 +42,19 @@ Send derefter denne Teams-meddelelse til din lærer: <filename> færdig
 Fortsæt derefter med den næste fil.
 """
 
+
 #  Write your functions below this line.
+def print_repeatedly(string, repetitions):
+    for _ in range(repetitions):
+        print(string, end='')
+
+
+def print_pattern(string, repetition_list):
+    for i in repetition_list:
+        print_repeatedly(string, repetition_list[i])
+        i = i + 1
 
 
 # Here starts the main program. From the main program you can call your functions.
+print(print_pattern("abc", [4, 2, 1]))
+
