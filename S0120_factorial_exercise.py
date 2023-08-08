@@ -32,11 +32,12 @@ Send derefter denne Teams-meddelelse til din lærer: <filename> færdig
 Fortsæt derefter med den næste fil.
 """
 
+
 #  Write your function below this line.
 def factorial(number):
     result = 1
     x = 1
-    while x <= number:
+    for _ in range(number):
         result = x * result
         x = x + 1
     return result
@@ -45,6 +46,5 @@ def factorial(number):
 # Here starts the main program. From the main program you can call your functions.
 factorial_input = 6
 factorial_result = (factorial(factorial_input))
-print(str(factorial_input) + "! = " + str(factorial_result))
 
-f"{factorial_input}! = {factorial_result}." # forstår ikke hvorfor dette ikke virker
+print(f"{factorial_input}! = {factorial_result}.")  # forstår ikke hvorfor dette ikke virker
