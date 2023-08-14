@@ -25,8 +25,6 @@ myfile = "S0165_names.txt"
 
 line_number = 0
 with open(myfile) as file:
-    navn = ""
-    alder = 0
     for line in file:
         som_list = line.split(",")
         navn = som_list[0]
