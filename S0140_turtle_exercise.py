@@ -130,36 +130,70 @@ def spiral():
         tom.forward(x)
 
 
-def star_polygon():
+def star_polygon(number):
+    tom.speed(10)
     tom.pencolor("gold")
-    tom.speed(5)
-    tom.left(36)
-    tom.forward(75)
-    for i in range(4):
-        tom.left(144)
+    if number == 1:
+        tom.left(36)
         tom.forward(75)
-    tom.left(108)
+        for i in range(4):
+            tom.left(144)
+            tom.forward(75)
+    if number == 2:
+        tom.left(54)
+        tom.forward(75)
+        for i in range(6):
+            tom.left(154)
+            tom.forward(75)
+    if number == 3:
+        tom.right(50)
+        tom.forward(75)
+        for i in range(10):
+            tom.left(131)
+            tom.forward(75)
+    turtle.done()
+
+
+def brand():
+    tom.speed(1)
+    tom.pencolor("darkred")
+    tom.width(10)
+    tom.right(90)
+    tom.forward(150)
+    tom.right(135)
+    tom.forward(105)
+    tom.right(90)
+    tom.forward(210)
+    tom.left(90)
+    tom.forward(50)
     tom.penup()
-    tom.forward(120)
+    tom.home()
     tom.pendown()
-    tom.left(54)
-    tom.forward(75)
-    for i in range(6):
-        tom.left(154)
-        tom.forward(75)
-    tom.left(103)
+    tom.right(90)
+    tom.forward(150)
+    tom.left(135)
+    tom.forward(105)
+    tom.left(90)
+    tom.forward(210)
+    tom.right(90)
+    tom.forward(50)
     tom.penup()
-    tom.forward(120)
+    tom.home()
     tom.pendown()
-    tom.left(44)
-    tom.forward(75)
-    for i in range(12):
-        tom.left(139)
-        tom.forward(75)
+    tom.left(90)
+    tom.forward(105)
+    tom.width(7)
+    tom.forward(25)
+    tom.backward(25)
+    tom.left(45)
+    tom.forward(20)
+    tom.backward(20)
+    tom.right(90)
+    tom.forward(20)
     turtle.done()
 
 
 tom = turtle.Turtle()
 tom.speed(1)
 # many_squares(3, 100, 20)
-star_polygon()
+brand()
