@@ -155,6 +155,7 @@ def star_polygon(number):
 
 
 def brand():
+    tom.bgcolor("black")
     tom.speed(1)
     tom.pencolor("darkred")
     tom.width(10)
