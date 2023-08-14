@@ -1,0 +1,5 @@
+Magnus, 20
+Ole, 58
+Hanne, 54
+Anna, 14
+Simon, 24
