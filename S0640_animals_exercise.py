@@ -75,20 +75,32 @@ class Dog(Animal):
                 f"It´s tail is {self.tail_length}cm long. does it hunt sheep?: {self.hunts_sheep}\n")
 
     def wag_tail(self):
-        return print(f"{self.name} wags it´s {self.tail_length}cm long tail, it appears to be happy")
+        return print(f"{self.name} wags it´s {self.tail_length}cm long tail, it appears to be happy\n")
 
-    def mate(self, mother, father):
-        self.mother = mother
-        self.father = father
-        if mother.female == True and father.female == False:
-            child_height = random.randint(father.height, mother.height)
-            child_weight = random.randint(father.weight, mother.weight)
-            child_tail_length = random.randint(father.tail_length, mother.tail_length)
+    @staticmethod
+    def mate(mother, father):
+        if mother.female and not father.female:
+            if father.height < mother.height:
+                child_height = random.randint(father.height, mother.height)
+            else:
+                child_height = random.randint(mother.height, father.height)
+            if father.weight < mother.weight:
+                child_weight = random.randint(father.weight, mother.weight)
+            else:
+                child_weight = random.randint(mother.weight, father.weight)
+            if father.tail_length < mother.tail_length:
+                child_tail_length = random.randint(father.tail_length, mother.tail_length)
+            else:
+                child_tail_length = random.randint(mother.tail_length, father.tail_length)
             if random.randint(0, 1) == 0:
                 child_female = True
             else:
                 child_female = False
-            child = Dog("", "Woof", child_height, child_weight, 4, child_female, child_tail_length)
+            if random.randint(0, 1) == 0:
+                child_hunts_sheep = True
+            else:
+                child_hunts_sheep = False
+            return Dog("not named", "Woof", child_height, child_weight, 4, child_female, child_tail_length, child_hunts_sheep)
         else:
             return f"There isn´t a mother and father"
 
@@ -103,4 +115,4 @@ print(dog1)
 print(dog2)
 dog1.make_noise()
 dog1.wag_tail()
-dog1.mate(dog1, dog2)
+print(Dog.mate(dog2, dog1))
