@@ -44,8 +44,9 @@ I hovedprogrammet kalder du denne metode og udskriver den nye hund.
 Når dit program er færdigt, skal du skubbe det til dit github-repository.
 Send derefter denne Teams-meddelelse til din lærer: <filename> færdig
 Fortsæt derefter med den næste fil."""
+import random
 
-
+random.seed(1, 2)
 class Animal:
     def __init__(self, name, sound, height, weight, legs, female):
         self.name = name
@@ -56,7 +57,7 @@ class Animal:
         self.female = female
 
     def __repr__(self):
-        return f"{self.name} has {self.legs} legs, a weight of {self.weight}kg and a height of {self.height}cm.\nIt makes the sound {self.sound}. Is it a Female: {self.female}"
+        return f"{self.name} has {self.legs} legs, a weight of {self.weight}kg and a height of {self.height}cm.\nIt makes the sound {self.sound}. Is it a Female: {self.female}\n"
 
     def make_noise(self):
         print(f"{self.sound}, {self.sound}")
@@ -64,22 +65,42 @@ class Animal:
 
 class Dog(Animal):
 
-    def __int__(self, name, sound, height, weight, legs, female, tail_length, hunts_sheep):
-        super().__init__(name, sound, height, weight, legs, female)
+    def __init__(self, name, sound, height, weight, legs, female, tail_length, hunts_sheep):
         self.tail_length = tail_length
         self.hunts_sheep = hunts_sheep
+        Animal.__init__(self, name, sound, height, weight, legs, female)
 
     def __repr__(self):
-        return (f"{self.name} has {self.legs} legs, a weight of {self.weight}kg and a height of {self.height}cm.\nIt makes the sound {self.sound}. Is it a Female: {self.female}"
-                f"It´s tail is {self.tail_length}cm long. does it hunt sheep?: {self.hunts_sheep}")
-    
-    def make_noise(self):
-        print(self.sound)
+        return (f"{self.name} has {self.legs} legs, a weight of {self.weight}kg and a height of {self.height}cm.\nIt makes the sound {self.sound}. Is it a Female: {self.female}\n"
+                f"It´s tail is {self.tail_length}cm long. does it hunt sheep?: {self.hunts_sheep}\n")
+
+    def wag_tail(self):
+        return print(f"{self.name} wags it´s {self.tail_length}cm long tail, it appears to be happy")
+
+    def mate(self, mother, father):
+        self.mother = mother
+        self.father = father
+        if mother.female == True and father.female == False:
+            child_height = random.randint(father.height, mother.height)
+            child_weight = random.randint(father.weight, mother.weight)
+            child_tail_length = random.randint(father.tail_length, mother.tail_length)
+            if random.randint(0, 1) == 0:
+                child_female = True
+            else:
+                child_female = False
+            child = Dog("", "Woof", child_height, child_weight, 4, child_female, child_tail_length)
+        else:
+            return f"There isn´t a mother and father"
 
 
-dog1 = Animal("balter", "Woof", 80, 35, 4, False)
+cat = Animal("balter", "Meow", 80, 35, 4, False)
+print(cat)
+cat.make_noise()
+
+dog1 = Dog("Bjef", "woof", 50, 20, 4, False, 50, True)
+dog2 = Dog("Bjaf", "woof", 20, 5, 4, True, 20, False)
 print(dog1)
-dog1.make_noise()
-
-dog2 = Dog("Bjaf", "woof", 20, 5, 4, False, 20, False)
 print(dog2)
+dog1.make_noise()
+dog1.wag_tail()
+dog1.mate(dog1, dog2)
