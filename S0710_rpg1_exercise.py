@@ -46,26 +46,69 @@ class Character:
     def hit(self, character):
         character.get_hit(self.attackpower)
 
+    def crit_hit(self, chararcter):
+        chararcter.get_hit(self.attackpower*2)
+
     def get_hit(self, attackpower):
         self._current_hp -= attackpower
+
+    def magic_get_hit(self, magicpower):
+        self._current_hp -= magicpower
 
     def get_healed(self, healpower):
         self._current_hp += healpower
 
+    def fireball_hit(self, character, magicpower):
+        character.magic_get_hit(magicpower*2)
 
 class Healer(Character):
-    def __init__(self, name, max_hp, _current_hp, attackpower, healingpower):
+    def __init__(self, name, max_hp, _current_hp, attackpower, healingpower, mana):
         self.healingpower = healingpower
+        self.mana = mana
         Character.__init__(self, name, max_hp, _current_hp, attackpower)
         self.attackpower = 0
 
     def heal(self, character):
         character.get_healed(self.healingpower)
 
+    def grand_heal(self, character):
+        if self.mana >= 50:
+            self.mana -= 50
+            character.get_healed(self.healingpower*2.5)
+        else:
+            print(f"{self.name} tried to use 'grand heal', but had insuffecient mana: {self.mana}")
+
+class Rogue(Character):
+    def __init__(self, name, max_hp, _current_hp, attackpower, unseen):
+        self.unseen = unseen
+        Character.__init__(self, name, max_hp, _current_hp, attackpower)
+
+    def ambush(self, character, unseen):
+        if unseen:
+            self.unseen = False
+            self.crit_hit(character)
+        else:
+            print(f"{self.name} tried to ambush {character.name} but failed")
+
+class Mage(Character):
+    def __init__(self, name, max_hp, _current_hp, attackpower, mana, magicpower):
+        self.mana = mana
+        self.magicpower = magicpower
+        self.attackpower = self.attackpower * 0.5
+        Character.__init__(self, name, max_hp, _current_hp, attackpower)
+
+    def fireball(self, character):
+        if self.mana >= 25:
+            self.mana -= 25
+            self.fireball_hit(character, self.magicpower)
+        else:
+            print(f"{self.name} tried to cast fireball but had insuffecient mana: {self.mana}")
+
+
 
 Riko = Character("Riko", 100, 100, 10)
 Flanders = Character("Flanders", 100, 100, 10)
-Marie = Healer("Marie", 80, 80, 1000, 10)
+Marie = Healer("Marie", 80, 80, 1000, 10, 100)
 Flanders.hit(Riko)
 Flanders.hit(Riko)
 print(Riko)
