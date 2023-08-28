@@ -66,7 +66,8 @@ class Character:
     def get_healed(self, healpower):
         self._current_hp += healpower
 
-    def fireball_hit(self, character, magicpower):
+    @staticmethod
+    def fireball_hit(character, magicpower):
         if random.randint(1, 10) != 1:
             character.magic_get_hit(magicpower * 2)
         else:
