@@ -78,7 +78,7 @@ import random
 from S1520_turtle_hunt_service import distance, direction
 
 
-class PlayerName1(turtle.Turtle):
+class Mitcher(turtle.Turtle):
 
     def __init__(self):
         super().__init__()  # Here, this is equivalent to turtle.Turtle.__init__(self)
@@ -102,8 +102,16 @@ class PlayerName1(turtle.Turtle):
 
     def rotate_hunter(self, positions):  # turtle will be turned right <degree> degrees. Use negative values for left turns.
         # Example for use of the service functions distance() and direction
+
         # print(f'{distance(self.position(), positions[0])=}   {direction(self.position(), positions[0])=}')  # print distance and direction from the current hunter to the prey
-        degree = -0.5  # When the turtle rotates the same amount each turn,  it will just run in a circle. Make this function smarter!
+        print(f"{distance(self.position(), positions[0])=} {direction(self.position(), positions[0])=}")
+
+        x = direction(self.position(), positions[0])
+        if x >= 180:
+            degree = 360 - x
+        else:
+            degree = + x
+        degree = degree / 100
         self.orientation += degree
         self.orientation %= 360
         # print(self.orientation)
@@ -128,5 +136,5 @@ CAUGHT_DISTANCE = 10  # Hunt is over, when a hunter is nearer to the prey than t
 random.seed(2)  # use seed() if you want reproducible random numbers for debugging purposes. You may change the argument of seed().
 
 
-class1 = PlayerName1  # (red prey) Replace PlayerName1 by your own class name here.
-class2 = PlayerName1  # (green prey) For testing your code, replace PlayerName1 by your own class name here. Later replace this by your sparring partner's class name.
+class1 = Mitcher  # (red prey) Replace PlayerName1 by your own class name here.
+class2 = Mitcher  # (green prey) For testing your code, replace PlayerName1 by your own class name here. Later replace this by your sparring partner's class name.
