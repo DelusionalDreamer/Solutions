@@ -107,14 +107,14 @@ class Mitcher(turtle.Turtle):
         print(f"{distance(self.position(), positions[0])=} {direction(self.position(), positions[0])=}")
 
         x = direction(self.position(), positions[0])
-        if x >= 180:
-            degree = 360 - x
+        if x >= self.orientation:
+            degree = x - self.orientation
         else:
             degree = + x
-        degree = degree / 100
+        print(degree)
         self.orientation += degree
         self.orientation %= 360
-        # print(self.orientation)
+        print(self.orientation)
         return degree
 
 
