@@ -124,7 +124,7 @@ class Mitcher(turtle.Turtle):
         return degree
 
 
-#  Insert the code of your sparring partner's turtle class here:
+#  Insert the code of your sparring partner's turtle class here:1
 #
 #
 #
