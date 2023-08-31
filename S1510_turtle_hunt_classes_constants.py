@@ -93,8 +93,10 @@ class Mitcher(turtle.Turtle):
 
         # Example for use of the service functions distance() and direction
         # print(f'{distance(positions[0], positions[1])=}   {direction(positions[0], positions[1])=}')  # print distance and direction from prey to hunter1
-
-        degree = 3  # When the turtle rotates the same amount each turn,  it will just run in a circle. Make this function smarter!
+        if random.randint(1, 2) == 1:
+            degree = 3  # When the turtle rotates the same amount each turn,  it will just run in a circle. Make this function smarter!
+        else:
+            degree = 5
         self.orientation += degree
         self.orientation %= 360
         # print(self.orientation)
@@ -107,14 +109,18 @@ class Mitcher(turtle.Turtle):
         print(f"{distance(self.position(), positions[0])=} {direction(self.position(), positions[0])=}")
 
         x = direction(self.position(), positions[0])
+        print(self.pos())
         if x >= self.orientation:
             degree = x - self.orientation
+            self.orientation += degree
         else:
-            degree = + x
-        print(degree)
-        self.orientation += degree
+            degree = self.orientation - x
+            self.orientation -= degree
+        print(f"degree=   {degree}")
+        print(f"ori =     {self.orientation}")
         self.orientation %= 360
-        print(self.orientation)
+        print(f"x =       {x}")
+        print(f"ori =     {self.orientation}")
         return degree
 
 
